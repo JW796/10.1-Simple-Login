@@ -30,12 +30,14 @@ function App() {
       <div>
         {loggedIn ? (
           <>
-            <div>
+            <div className="flex flex-col items-center gap-4">
               <h2 classNames="text-center text-3xl mt-4">
                 Welcome {username}!
               </h2>
-              <button className="bg-blue-600 text-white text-lg font-medium rounded-lg py-3">
-
+              <button className="bg-blue-600 text-white text-lg font-medium rounded-lg py-3"
+              onClick={() => setLoggedIn(false)}
+              >
+                Log Out
               </button>
             </div>
           </>

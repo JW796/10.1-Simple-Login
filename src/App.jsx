@@ -56,16 +56,13 @@ function App() {
     dispatch({ type: "logIn" });
 
     try {
-      if (username === "James" && password === "1234") {
-        setLoggedIn(true);
+      if (state.username === "James" && state.password === "1234") {
+        dispatch({type: "success"});
       } else {
         throw Error;
       }
-      setPassword("");
     } catch (error) {
-      setError("Incorrect username or password");
-      setUsername("");
-      setPassword("");
+      dispatch({ type: "error" });
     }
   };
 
@@ -75,14 +72,15 @@ function App() {
         useReducer
       </h1>
       <div>
-        {loggedIn ? (
+        {state.loggedIn ? (
           <>
             <div className="flex flex-col items-center gap-4">
               <h2 classNames="text-center text-3xl mt-4">
-                Welcome {username}!
+                Welcome {state.username}!
               </h2>
-              <button className="bg-blue-600 text-white text-lg font-medium rounded-lg py-3"
-              onClick={() => setLoggedIn(false)}
+              <button
+                className="bg-blue-600 text-white text-lg font-medium rounded-lg py-3"
+                onClick={() => dispatch({ type: "logOut" })}
               >
                 Log Out
               </button>
@@ -98,16 +96,28 @@ function App() {
               type="text"
               autoComplete="username"
               placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={state.username}
+              onChange={(e) =>
+                dispatch({
+                  type: "field",
+                  fieldName: "username",
+                  payload: e.target.Value,
+                })
+              }
             />
             <input
               className="border rounded-lg px-2 px-1"
               type="password"
               autoComplete="current-password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={state.password}
+              onChange={(e) =>
+                dispatch({
+                  type: "field",
+                  fieldName: "username",
+                  payload: e.target.Value,
+                })
+              }
             />
             <button
               className="bg-blue-600 text-white text-lg font-medium rounded-lg py-3"
@@ -115,7 +125,7 @@ function App() {
             >
               Log In
             </button>
-            <p className="text-red-500 text-center">{error}</p>
+            <p className="text-red-500 text-center">{state.error}</p>
           </form>
         )}
       </div>

@@ -52,7 +52,9 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError("");
+
+    dispatch({ type: "logIn" });
+
     try {
       if (username === "James" && password === "1234") {
         setLoggedIn(true);

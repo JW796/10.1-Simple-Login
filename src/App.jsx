@@ -91,7 +91,7 @@ function App() {
           </>
         ) : (
           <form
-            className="flex-center text-3xl font-semibold mt-2 py-4"
+            className="flex flex-col items-center justify-center gap-4 mt-2 py-2"
             onSubmit={handleSubmit}
           >
             <input
@@ -123,7 +123,7 @@ function App() {
               }
             />
             <button
-              className="bg-blue-600 text-white text-lg font-medium rounded-lg py-3"
+              className="bg-blue-600 text-white text-lg font-medium rounded-lg py-1 px-3"
               type="submit"
             >
               Log In
